@@ -1,0 +1,8 @@
+Timestamp,Disease,Inputs,Result
+2025-03-03 22:35:07,Heart Disease,"{'age': 0, 'sex': 1, 'cp': 0, 'trestbps': 0, 'chol': 0, 'fbs': 1, 'restecg': 0, 'thalach': 0, 'exang': 1, 'oldpeak': 0, 'slope': 0, 'ca': 2, 'thal': 0}",The person does not have heart disease
+2025-03-03 22:37:23,Heart Disease,"{'age': 55, 'sex': 1, 'cp': 3, 'trestbps': 130, 'chol': 240, 'fbs': 0, 'restecg': 1, 'thalach': 150, 'exang': 0, 'oldpeak': 1, 'slope': 1, 'ca': 0, 'thal': 2}",The person has heart disease
+2025-03-03 23:08:41,Heart Disease,"{'age': 56, 'sex': 1, 'cp': 2, 'trestbps': 130, 'chol': 250, 'fbs': 0, 'restecg': 0, 'thalach': 150, 'exang': 0, 'oldpeak': 1, 'slope': 1, 'ca': 0, 'thal': 2}",The person has heart disease
+2025-03-05 01:11:11,Diabetes,"{'Pregnancies': 0, 'Glucose': 0, 'BloodPressure': 0, 'SkinThickness': 0, 'Insulin': 0, 'BMI': 0, 'DiabetesPedigreeFunction': 0, 'Age': 0}",The person is not diabetic
+2025-03-05 20:38:27,Heart Disease,"{'age': 55, 'sex': 1, 'cp': 2, 'trestbps': 130, 'chol': 240, 'fbs': 0, 'restecg': 0, 'thalach': 150, 'exang': 0, 'oldpeak': 1, 'slope': 1, 'ca': 0, 'thal': 0}",The person has heart disease
+2025-03-05 22:52:27,Diabetes,"{'Pregnancies': 0, 'Glucose': 0, 'BloodPressure': 0, 'SkinThickness': 0, 'Insulin': 0, 'BMI': 0, 'DiabetesPedigreeFunction': 0, 'Age': 0}",The person is not diabetic
+2025-03-07 22:48:04,Heart Disease,"{'age': 0, 'sex': 1, 'cp': 2, 'trestbps': 130, 'chol': 240, 'fbs': 0, 'restecg': 0, 'thalach': 150, 'exang': 1, 'oldpeak': 1, 'slope': 1, 'ca': 0, 'thal': 1}",The person has heart disease

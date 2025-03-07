@@ -1,0 +1,14 @@
+# Web app framework
+streamlit==1.17.0
+
+# Data manipulation and analysis
+pandas==1.5.3
+numpy==1.23.5
+
+# Machine learning (if your models use scikit-learn)
+scikit-learn==1.1.1
+
+# Optional: A library for enhanced Streamlit navigation components
+streamlit-option-menu==0.3.3
+
+plotly>=5.0.0
