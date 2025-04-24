@@ -1,21 +1,50 @@
-import streamlit as st# Set page configuration with title and icon
-st.set_page_config(page_title="Healix", page_icon="🧬")
-
-
+import streamlit as st# type: ignore # Set page configuration with title and icon
 import pickle
 import csv
 import os
 from datetime import datetime
-import pandas as pd
+import pandas as pd # type: ignore
 import wearable_integration
 import what_if_analysis
 import tutorials
 import feedback
 import chatbot
+import sqlite3
+from user_auth import user_authentication
 
-from streamlit_option_menu import option_menu
+st.set_page_config(page_title="Healix", page_icon="🧬")
+
+# 🔒 Ensure user authentication before accessing the app
+if "logged_in" not in st.session_state:
+    st.session_state["logged_in"] = False
+    st.session_state["user_name"] = None
+
+if not st.session_state["logged_in"]:
+    user_authenticated = user_authentication()
+    if not user_authenticated:
+        st.stop()  # Stop app execution until the user logs in
+
+
+from streamlit_option_menu import option_menu # type: ignore
 
 chatbot.display_chatbot()
+
+with st.sidebar:
+    
+    styles={
+            "container": {"padding": "5px", "background-color": "rgba(0,0,0,0.5)"},
+            "icon": {"color": "white", "font-size": "25px"},
+            "nav-link": {"font-size": "18px", "text-align": "left", "margin": "0px", "--hover-color": "#527ade"},
+            "nav-link-selected": {"background-color": "#527ade"},
+        }
+
+# Logout Button
+if st.sidebar.button("Logout"):
+    st.session_state["logged_in"] = False
+    st.session_state["user_name"] = None
+    st.success("🔓 Logged out successfully!")
+    st.rerun()
+
 
 # Custom CSS styling to create a unique UI/UX
 custom_css = """
@@ -462,3 +491,4 @@ with st.container():
     feedback.display_feedback_button()
     st.markdown('</div>', unsafe_allow_html=True)
 #st.markdown(custom_css, unsafe_allow_html=True)
+
