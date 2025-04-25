@@ -46,75 +46,65 @@ if st.sidebar.button("Logout"):
     st.rerun()
 
 
+
 # Custom CSS styling to create a unique UI/UX
-custom_css = """
-<style>
-/* Set a unique background image with full cover and an overlay for readability */
-[data-testid="stAppViewContainer"] {
-    background-image: url("https://your-unique-image-url.com/your-image.jpg");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    position: relative;
-}
+st.markdown(
+    """
+    <style>
+    body {
+        font-family: 'Arial', sans-serif;
+    }
+    [data-testid="stSidebar"] {
+        background-color: rgba(44, 62, 80, 0.7); /* Transparent sidebar */
+        color: white;
+    }
+    .stButton>button {
+        background-color: #0b6799;
+        color: white;
+        font-weight: bold;
+        border: none;
+        border-radius: 8px;
+        padding: 10px 20px;
+        font-size: 16px;
+    }
+    .stButton>button:hover {
+        background-color: #0b6799;
+        transform: scale(1.05);
+    }
+    .main-header {
+        font-size: 44px;
+        color: #FFFFFF;
+        text-align: center;
+        margin-bottom: 25px;
+        text-shadow: 3px 3px 6px #000000;
+    }
+    .prediction-container {
+        background-color: rgba(255, 255, 255, 0.3);
+        padding: 30px;
+        border-radius: 20px;
+        margin-top: 25px;
+        box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(12px);
+        text-align: center;
+    }
+    .slider-label {
+        font-size: 20px;
+        font-weight: bold;
+        color: #FFFFFF;
+    }
+    .get-started {
+        margin-top: 20px;
+    }
 
-/* Overlay to darken/lighten background for better contrast */
-[data-testid="stAppViewContainer"]::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.3);  /* Adjust transparency as needed */
-    z-index: 0;
-}
-
-/* Ensure your main content appears above the overlay */
-[data-testid="stAppViewContainer"] > .main {
-    position: relative;
-    z-index: 1;
-}
-
-/* Custom font, color, and text styling */
-body {
-    font-family: 'Montserrat', sans-serif;
-}
-h1, h2, h3, h4, h5, h6 {
-    color: #1f4068;  /* Unique color for headings */
-}
-
-/* Custom styling for buttons */
-.stButton > button {
-    background-color: #1f4068;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    padding: 10px 20px;
-    font-size: 16px;
-}
-.stButton > button:hover {
-    background-color: #15315b;
-}
-
-/* Adjust other elements as desired */
-</style>
-"""
-
-
-# Hide default Streamlit menu and footer
-hide_st_style = """
-            <style>
-            #MainMenu {visibility: hidden;}
-            footer {visibility: hidden;}
-            header {visibility: hidden;}
-            </style>
-            """
-st.markdown(hide_st_style, unsafe_allow_html=True)
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
 
 
 # Adding Background Image with overlay
-background_image_url = "https://media-hosting.imagekit.io//4b80d9c2cbee4633/medicoai%20pic_cleanup.PNG?Expires=1835722284&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=LDPpcc-0f0HPSvc4rIBaeu7FyXVWBP8HDPtVRrqE3Zfd58Mg~RL5TVs6K9wVBnlYjd6rIyFkYSGq5lbSFzXgnYDxgjqIsNYLzPyE1bOro51o1Hml4jL9ECRHUGkZAV6HFoVnJrXOrowYx0sPEsZQY5nui9hhCF3o8kamHY5XjjTrNOPvPAEm8FYtXedX4tlyj-OE3biKT7JAJf1HeGktFZ2FfQUnVRGx3D6UodhXPK8W7n01DJkAfu6QM6kiOeWIamlTHqtdbMzhUU875art0FpibZ6P8t0fSaeycXICXPTxXdAgQm0BvwfUNl5v1Iy-pj4vfci2mCtNb1E3YUT-pQ__"
+background_image_url = "https://img.freepik.com/premium-photo/healthcare-professional-interacts-with-futuristic-medical-ai-interface-displaying-data-diagnostics_124507-300565.jpg"
+
 page_bg_img = f"""
 <style>
 [data-testid="stAppViewContainer"] {{
@@ -436,23 +426,37 @@ elif selected == "Lung Cancer Prediction":
 elif selected == "Hypo-Thyroid Prediction":
     st.title("Hypo-Thyroid Prediction")
     st.write("Enter the following details to predict hypo-thyroid disease:")
+
     with st.expander("Enter Hypo-Thyroid Details"):
         st.info("FAQ: 'On Thyroxine' and 'T3 Measured' are binary inputs. Age is in years and TSH, T3, TT4 are measured in their respective clinical units.")
+
         age = st.number_input('Age', key='age_thyroid', help='Enter the age in years.', step=1)
         sex = st.selectbox('Sex', options=["Male", "Female"], key='sex_thyroid', help='Select the gender (Male=1, Female=0).')
         sex = 1 if sex == "Male" else 0
+
         on_thyroxine = st.selectbox('On Thyroxine', options=["Yes", "No"], key='on_thyroxine', help='Is the person on thyroxine? (Yes=1, No=0).')
         on_thyroxine = 1 if on_thyroxine == "Yes" else 0
+
         tsh = st.number_input('TSH Level', key='tsh', help='Enter the TSH level (mIU/L).', step=1)
         t3_measured = st.selectbox('T3 Measured', options=["Yes", "No"], key='t3_measured', help='Was the T3 level measured? (Yes=1, No=0).')
         t3_measured = 1 if t3_measured == "Yes" else 0
+
         t3 = st.number_input('T3 Level', key='t3', help='Enter the T3 level (ng/dL).', step=1)
         tt4 = st.number_input('TT4 Level', key='tt4', help='Enter the TT4 level (µg/dL).', step=1)
+
     if st.button("Thyroid Test Result"):
         with st.spinner("Processing Thyroid Prediction..."):
-            thyroid_prediction = models['thyroid'].predict([[age, sex, on_thyroxine, tsh, t3_measured, t3, tt4]])
-            thyroid_diagnosis = "The person has Hypo-Thyroid disease" if thyroid_prediction[0] == 1 else "The person does not have Hypo-Thyroid disease"
+            prediction_input = [[age, sex, on_thyroxine, tsh, t3_measured, t3, tt4]]
+            thyroid_prediction = models['thyroid'].predict(prediction_input)
+
+            if thyroid_prediction[0] == 1:
+                thyroid_diagnosis = "The person **has Hypo-Thyroid disease.**"
+            else:
+                thyroid_diagnosis = "The person **does not have Hypo-Thyroid disease.**"
+
         st.success(thyroid_diagnosis)
+
+        # Optional: Log the result
         inputs = {
             "age": age,
             "sex": sex,
